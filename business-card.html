@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Business Card — Benny A/C Solutions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #d0dce4;
+      font-family: 'Nunito', sans-serif;
+      padding: 3rem 2rem;
+      min-height: 100vh;
+    }
+
+    h2 {
+      text-align: center;
+      color: #0D2137;
+      font-size: .8rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 1.5rem;
+    }
+
+    .page-label {
+      text-align: center;
+      color: #3A6070;
+      font-size: .72rem;
+      font-weight: 700;
+      margin-bottom: 2.5rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+
+    /* Card wrapper */
+    .cards-row {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-bottom: 3rem;
+    }
+
+    .card-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .6rem;
+    }
+    .card-label {
+      font-size: .68rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #3A6070;
+    }
+
+    /* Business card: 3.5" x 2" at 96dpi = 336 x 192px, scaled 1.75x for screen */
+    .card {
+      width: 588px;
+      height: 336px;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 6px 30px rgba(0,0,0,.2);
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    /* ── FRONT ── */
+    .card-front {
+      background: linear-gradient(135deg, #0D2137 0%, #1a3a5c 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: .6rem;
+      padding: 2rem;
+    }
+    .card-front .deco-circle {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(82,189,216,.07);
+    }
+    .card-front .deco-circle.c1 { width: 220px; height: 220px; top: -60px; right: -60px; }
+    .card-front .deco-circle.c2 { width: 150px; height: 150px; bottom: -50px; left: -30px; }
+    .card-front .deco-line {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 5px;
+      background: linear-gradient(90deg, #52BDD8, #3A9DB8);
+    }
+
+    .front-logo {
+      width: 82px;
+      height: 82px;
+      object-fit: contain;
+      background: #fff;
+      border-radius: 12px;
+      padding: 5px;
+      box-shadow: 0 4px 16px rgba(0,0,0,.3);
+      position: relative;
+      z-index: 1;
+    }
+    .front-name {
+      color: #fff;
+      font-size: 1.35rem;
+      font-weight: 900;
+      letter-spacing: -.3px;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      line-height: 1.1;
+    }
+    .front-name span { color: #52BDD8; }
+    .front-tagline {
+      color: rgba(255,255,255,.6);
+      font-size: .72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      position: relative;
+      z-index: 1;
+    }
+    .front-badge {
+      background: rgba(82,189,216,.15);
+      border: 1px solid rgba(82,189,216,.35);
+      color: #52BDD8;
+      font-size: .65rem;
+      font-weight: 800;
+      padding: .2rem .65rem;
+      border-radius: 20px;
+      letter-spacing: .5px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── BACK ── */
+    .card-back {
+      background: #fff;
+      display: flex;
+      align-items: stretch;
+    }
+    .back-stripe {
+      width: 6px;
+      background: linear-gradient(180deg, #52BDD8, #3A9DB8);
+      flex-shrink: 0;
+    }
+    .back-content {
+      flex: 1;
+      display: flex;
+      gap: 1rem;
+      padding: 1.4rem 1.4rem 1.4rem 1.2rem;
+      align-items: center;
+    }
+    .back-info { flex: 1; }
+    .back-company {
+      font-size: .85rem;
+      font-weight: 900;
+      color: #0D2137;
+      margin-bottom: .15rem;
+    }
+    .back-company span { color: #52BDD8; }
+    .back-sub {
+      font-size: .62rem;
+      font-weight: 700;
+      color: #52BDD8;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: .9rem;
+    }
+    .back-contact-item {
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+      font-size: .72rem;
+      font-weight: 700;
+      color: #0D2137;
+      margin-bottom: .38rem;
+    }
+    .back-contact-item svg { flex-shrink: 0; }
+    .back-services {
+      margin-top: .8rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: .25rem;
+    }
+    .back-svc-tag {
+      background: #EBF7FB;
+      color: #0D2137;
+      font-size: .58rem;
+      font-weight: 800;
+      padding: .15rem .45rem;
+      border-radius: 6px;
+    }
+
+    /* QR side */
+    .back-qr {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: .4rem;
+      flex-shrink: 0;
+    }
+    .back-qr-label {
+      font-size: .58rem;
+      font-weight: 800;
+      color: #0D2137;
+      text-transform: uppercase;
+      letter-spacing: .8px;
+      text-align: center;
+    }
+    .back-qr-url {
+      font-size: .6rem;
+      font-weight: 700;
+      color: #52BDD8;
+      text-align: center;
+    }
+    .back-lic {
+      position: absolute;
+      bottom: .5rem;
+      right: .8rem;
+      font-size: .55rem;
+      font-weight: 600;
+      color: rgba(13,33,55,.35);
+    }
+
+    .divider-section {
+      border: none;
+      border-top: 2px dashed rgba(0,0,0,.1);
+      margin: 0 auto 3rem;
+      width: 620px;
+    }
+
+    @media print {
+      body { background: #fff; padding: 1rem; }
+      .card { box-shadow: none; }
+      h2, .page-label, .card-label { display: none; }
+      .divider-section { border-color: #ccc; }
+    }
+  </style>
+</head>
+<body>
+
+<h2>Benny A/C Solutions — Business Cards</h2>
+<p class="page-label">Para imprimir: Ctrl + P → Guardar como PDF · Tamaño carta · Sin márgenes</p>
+
+<!-- ── ESPAÑOL ── -->
+<div class="cards-row">
+  <div class="card-wrap">
+    <span class="card-label">Frente / Front</span>
+    <div class="card card-front">
+      <div class="deco-circle c1"></div>
+      <div class="deco-circle c2"></div>
+      <div class="deco-line"></div>
+      <img src="assets/logo.webp" alt="Logo" class="front-logo">
+      <div class="front-name">Benny <span>A/C</span> Solutions <span>LLC</span></div>
+      <div class="front-tagline">HVAC Profesional · Orlando, FL</div>
+      <div class="front-badge">❄️ Instalación · Reparación · Mantenimiento</div>
+    </div>
+  </div>
+
+  <div class="card-wrap">
+    <span class="card-label">Reverso / Back (ES)</span>
+    <div class="card card-back" style="position:relative;">
+      <div class="back-stripe"></div>
+      <div class="back-content">
+        <div class="back-info">
+          <div class="back-company">Benny <span>A/C</span> Solutions LLC</div>
+          <div class="back-sub">HVAC · Orlando · Clermont · Kissimmee</div>
+
+          <div class="back-contact-item">
+            <svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="#52BDD8" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.338c0-1.087.865-1.966 1.94-1.966h1.08a1.875 1.875 0 011.8 1.35l.682 2.726a1.875 1.875 0 01-.431 1.873l-.7.7a14.25 14.25 0 006.387 6.387l.7-.7a1.875 1.875 0 011.873-.431l2.726.682a1.875 1.875 0 011.35 1.8v1.08c0 1.075-.879 1.94-1.966 1.94C6.912 21.75 2.25 17.088 2.25 6.338z"/></svg>
+            (407) 655-8000
+          </div>
+          <div class="back-contact-item">
+            <svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="#52BDD8" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25H4.5a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5H4.5a2.25 2.25 0 00-2.25 2.25m19.5 0l-9.75 6.75L2.25 6.75"/></svg>
+            bennyacsolutions@gmail.com
+          </div>
+          <div class="back-contact-item">
+            <svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="#52BDD8" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253"/></svg>
+            bennyac.com
+          </div>
+
+          <div class="back-services">
+            <span class="back-svc-tag">Instalación A/C</span>
+            <span class="back-svc-tag">Reparación</span>
+            <span class="back-svc-tag">Mantenimiento</span>
+            <span class="back-svc-tag">Calefacción</span>
+            <span class="back-svc-tag">Emergencias 24/7</span>
+            <span class="back-svc-tag">Termostatos</span>
+          </div>
+        </div>
+
+        <div class="back-qr">
+          <div id="qr-es"></div>
+          <div class="back-qr-label">Escanear</div>
+          <div class="back-qr-url">bennyac.com</div>
+        </div>
+      </div>
+      <span class="back-lic">Lic. #1362653556310</span>
+    </div>
+  </div>
+</div>
+
+<hr class="divider-section">
+
+<!-- ── ENGLISH BACK ── -->
+<div class="cards-row">
+  <div class="card-wrap">
+    <span class="card-label">Front (same)</span>
+    <div class="card card-front">
+      <div class="deco-circle c1"></div>
+      <div class="deco-circle c2"></div>
+      <div class="deco-line"></div>
+      <img src="assets/logo.webp" alt="Logo" class="front-logo">
+      <div class="front-name">Benny <span>A/C</span> Solutions <span>LLC</span></div>
+      <div class="front-tagline">Professional HVAC · Orlando, FL</div>
+      <div class="front-badge">❄️ Installation · Repair · Maintenance</div>
+    </div>
+  </div>
+
+  <div class="card-wrap">
+    <span class="card-label">Back (EN)</span>
+    <div class="card card-back" style="position:relative;">
+      <div class="back-stripe"></div>
+      <div class="back-content">
+        <div class="back-info">
+          <div class="back-company">Benny <span>A/C</span> Solutions LLC</div>
+          <div class="back-sub">HVAC · Orlando · Clermont · Kissimmee</div>
+
+          <div class="back-contact-item">
+            <svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="#52BDD8" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.338c0-1.087.865-1.966 1.94-1.966h1.08a1.875 1.875 0 011.8 1.35l.682 2.726a1.875 1.875 0 01-.431 1.873l-.7.7a14.25 14.25 0 006.387 6.387l.7-.7a1.875 1.875 0 011.873-.431l2.726.682a1.875 1.875 0 011.35 1.8v1.08c0 1.075-.879 1.94-1.966 1.94C6.912 21.75 2.25 17.088 2.25 6.338z"/></svg>
+            (407) 655-8000
+          </div>
+          <div class="back-contact-item">
+            <svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="#52BDD8" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25H4.5a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5H4.5a2.25 2.25 0 00-2.25 2.25m19.5 0l-9.75 6.75L2.25 6.75"/></svg>
+            bennyacsolutions@gmail.com
+          </div>
+          <div class="back-contact-item">
+            <svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="#52BDD8" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253"/></svg>
+            bennyac.com
+          </div>
+
+          <div class="back-services">
+            <span class="back-svc-tag">A/C Installation</span>
+            <span class="back-svc-tag">A/C Repair</span>
+            <span class="back-svc-tag">Maintenance</span>
+            <span class="back-svc-tag">Heating</span>
+            <span class="back-svc-tag">24/7 Emergency</span>
+            <span class="back-svc-tag">Thermostats</span>
+          </div>
+        </div>
+
+        <div class="back-qr">
+          <div id="qr-en"></div>
+          <div class="back-qr-label">Scan me</div>
+          <div class="back-qr-url">bennyac.com</div>
+        </div>
+      </div>
+      <span class="back-lic">Lic. #1362653556310</span>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+<script>
+  const qrConfig = {
+    text: "https://bennyac.com",
+    width: 90,
+    height: 90,
+    colorDark: "#0D2137",
+    colorLight: "#ffffff",
+    correctLevel: QRCode.CorrectLevel.H
+  };
+  new QRCode(document.getElementById("qr-es"), qrConfig);
+  new QRCode(document.getElementById("qr-en"), qrConfig);
+</script>
+
+</body>
+</html>
