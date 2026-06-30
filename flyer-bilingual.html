@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flyer Bilingüe — Benny A/C Solutions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #e8eef2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 2rem;
+      font-family: 'Nunito', sans-serif;
+    }
+
+    .flyer {
+      width: 620px;
+      background: #fff;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 8px 40px rgba(0,0,0,.18);
+    }
+
+    /* HEADER */
+    .header {
+      background: linear-gradient(135deg, #0D2137 0%, #1a3a5c 100%);
+      padding: 2rem 2rem 1.6rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .header::before {
+      content: '';
+      position: absolute;
+      width: 280px; height: 280px;
+      border-radius: 50%;
+      background: rgba(82,189,216,.07);
+      top: -100px; right: -70px;
+    }
+    .header::after {
+      content: '';
+      position: absolute;
+      width: 160px; height: 160px;
+      border-radius: 50%;
+      background: rgba(82,189,216,.05);
+      bottom: -60px; left: -40px;
+    }
+    .header-logo {
+      width: 140px;
+      height: 140px;
+      object-fit: contain;
+      background: #fff;
+      border-radius: 14px;
+      padding: 6px;
+      box-shadow: 0 4px 16px rgba(0,0,0,.25);
+      position: relative;
+      z-index: 1;
+      margin-bottom: 1rem;
+    }
+    .header h1 {
+      color: #fff;
+      font-size: 1.6rem;
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -.3px;
+      position: relative;
+      z-index: 1;
+    }
+    .header h1 span { color: #52BDD8; }
+    .header-tagline {
+      color: rgba(255,255,255,.6);
+      font-size: .82rem;
+      font-weight: 600;
+      margin-top: .35rem;
+      letter-spacing: .5px;
+      text-transform: uppercase;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* STRIPE */
+    .stripe {
+      background: #52BDD8;
+      padding: .5rem 1rem;
+      text-align: center;
+      color: #0D2137;
+      font-weight: 800;
+      font-size: .82rem;
+      letter-spacing: .3px;
+    }
+
+    /* BODY */
+    .body { padding: 1.6rem 1.8rem; }
+
+    /* BILINGUAL LABEL */
+    .lang-badge {
+      display: flex;
+      justify-content: center;
+      gap: .5rem;
+      margin-bottom: 1.2rem;
+    }
+    .lang-pill {
+      background: #0D2137;
+      color: #52BDD8;
+      font-size: .65rem;
+      font-weight: 800;
+      padding: .2rem .7rem;
+      border-radius: 20px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* SERVICES BILINGUAL GRID */
+    .services-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .4rem .8rem;
+      margin-bottom: 1.4rem;
+    }
+    .lang-col-header {
+      font-size: .65rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #52BDD8;
+      margin-bottom: .5rem;
+      text-align: center;
+    }
+    .svc-item {
+      display: flex;
+      align-items: center;
+      gap: .45rem;
+      background: #EBF7FB;
+      border-radius: 8px;
+      padding: .45rem .7rem;
+      font-size: .78rem;
+      font-weight: 700;
+      color: #0D2137;
+    }
+    .svc-item .dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: #52BDD8;
+      flex-shrink: 0;
+    }
+
+    /* DIVIDER */
+    .divider { border: none; border-top: 1px solid #e0edf2; margin: .2rem 0 1.4rem; }
+
+    /* BOTTOM: CONTACT + QR */
+    .bottom {
+      display: flex;
+      gap: 1.2rem;
+      align-items: center;
+    }
+    .contact-block { flex: 1; }
+    .contact-label {
+      font-size: .65rem;
+      font-weight: 900;
+      color: #52BDD8;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: .7rem;
+    }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: .45rem;
+      font-size: .82rem;
+      font-weight: 700;
+      color: #0D2137;
+      margin-bottom: .4rem;
+    }
+    .contact-item svg { flex-shrink: 0; }
+
+    /* AREAS */
+    .areas {
+      margin-top: .8rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: .25rem;
+    }
+    .area-tag {
+      background: #0D2137;
+      color: #fff;
+      font-size: .65rem;
+      font-weight: 700;
+      padding: .2rem .55rem;
+      border-radius: 20px;
+    }
+
+    /* QR */
+    .qr-block {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .4rem;
+      flex-shrink: 0;
+    }
+    #qrcode canvas, #qrcode img { border-radius: 10px; }
+    .qr-label {
+      font-size: .62rem;
+      font-weight: 900;
+      color: #0D2137;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: .8px;
+    }
+    .qr-url {
+      font-size: .62rem;
+      color: #52BDD8;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    /* FOOTER */
+    .footer {
+      background: #0D2137;
+      padding: .7rem 1.8rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-lic {
+      color: rgba(255,255,255,.4);
+      font-size: .65rem;
+      font-weight: 600;
+    }
+    .footer-badge {
+      background: rgba(82,189,216,.15);
+      border: 1px solid rgba(82,189,216,.3);
+      color: #52BDD8;
+      font-size: .65rem;
+      font-weight: 800;
+      padding: .2rem .65rem;
+      border-radius: 20px;
+    }
+
+    @media print {
+      body { background: #fff; padding: 0; }
+      .flyer { box-shadow: none; border-radius: 0; width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="flyer">
+
+  <!-- HEADER -->
+  <div class="header">
+    <img src="assets/logo.webp" alt="Benny AC Solutions" class="header-logo">
+    <h1>Benny <span>A/C</span> Solutions <span>LLC</span></h1>
+    <div class="header-tagline">HVAC Profesional · Professional HVAC · Orlando, FL</div>
+  </div>
+
+  <!-- STRIPE -->
+  <div class="stripe">
+    ❄️ Instalación · Installation &nbsp;·&nbsp; Reparación · Repair &nbsp;·&nbsp; Mantenimiento · Maintenance 🌡️
+  </div>
+
+  <!-- BODY -->
+  <div class="body">
+
+    <!-- LANG BADGES -->
+    <div class="lang-badge">
+      <span class="lang-pill">🇺🇸 English</span>
+      <span class="lang-pill">🇵🇷 Español</span>
+    </div>
+
+    <!-- COLUMN HEADERS -->
+    <div class="services-grid">
+      <div class="lang-col-header">Our Services</div>
+      <div class="lang-col-header">Nuestros Servicios</div>
+
+      <div class="svc-item"><span class="dot"></span>A/C Installation</div>
+      <div class="svc-item"><span class="dot"></span>Instalación de A/C</div>
+
+      <div class="svc-item"><span class="dot"></span>A/C Repair</div>
+      <div class="svc-item"><span class="dot"></span>Reparación de A/C</div>
+
+      <div class="svc-item"><span class="dot"></span>Maintenance / Tune-up</div>
+      <div class="svc-item"><span class="dot"></span>Mantenimiento / Tune-up</div>
+
+      <div class="svc-item"><span class="dot"></span>Heating Installation</div>
+      <div class="svc-item"><span class="dot"></span>Instalación de Calefacción</div>
+
+      <div class="svc-item"><span class="dot"></span>Heating Repair</div>
+      <div class="svc-item"><span class="dot"></span>Reparación de Calefacción</div>
+
+      <div class="svc-item"><span class="dot"></span>Air Quality / Filters</div>
+      <div class="svc-item"><span class="dot"></span>Calidad de Aire / Filtros</div>
+
+      <div class="svc-item"><span class="dot"></span>Thermostat Installation</div>
+      <div class="svc-item"><span class="dot"></span>Instalación de Termostatos</div>
+
+      <div class="svc-item"><span class="dot"></span>24/7 Emergency Service</div>
+      <div class="svc-item"><span class="dot"></span>Servicio de Emergencia 24/7</div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- CONTACT + QR -->
+    <div class="bottom">
+      <div class="contact-block">
+        <div class="contact-label">Contact / Contacto</div>
+
+        <div class="contact-item">
+          <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="#52BDD8" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.338c0-1.087.865-1.966 1.94-1.966h1.08a1.875 1.875 0 011.8 1.35l.682 2.726a1.875 1.875 0 01-.431 1.873l-.7.7a14.25 14.25 0 006.387 6.387l.7-.7a1.875 1.875 0 011.873-.431l2.726.682a1.875 1.875 0 011.35 1.8v1.08c0 1.075-.879 1.94-1.966 1.94C6.912 21.75 2.25 17.088 2.25 6.338z"/></svg>
+          (407) 655-8000
+        </div>
+        <div class="contact-item">
+          <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="#52BDD8" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25H4.5a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5H4.5a2.25 2.25 0 00-2.25 2.25m19.5 0l-9.75 6.75L2.25 6.75"/></svg>
+          bennyacsolutions@gmail.com
+        </div>
+        <div class="contact-item">
+          <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="#52BDD8" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253"/></svg>
+          bennyac.com
+        </div>
+
+        <div class="areas">
+          <span class="area-tag">Orlando</span>
+          <span class="area-tag">Clermont</span>
+          <span class="area-tag">Kissimmee</span>
+          <span class="area-tag">Davenport</span>
+        </div>
+      </div>
+
+      <!-- QR -->
+      <div class="qr-block">
+        <div id="qrcode"></div>
+        <div class="qr-label">Scan / Escanear</div>
+        <div class="qr-url">bennyac.com</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <span class="footer-lic">Lic. #1362653556310</span>
+    <span class="footer-badge">Free preventive visit · Visita preventiva gratis</span>
+  </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+<script>
+  new QRCode(document.getElementById("qrcode"), {
+    text: "https://bennyac.com",
+    width: 130,
+    height: 130,
+    colorDark: "#0D2137",
+    colorLight: "#ffffff",
+    correctLevel: QRCode.CorrectLevel.H
+  });
+</script>
+
+</body>
+</html>
