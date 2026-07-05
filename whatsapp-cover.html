@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>WhatsApp Cover — Benny A/C Solutions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #c8d4da;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      gap: 1rem;
+      font-family: 'Nunito', sans-serif;
+    }
+
+    .hint {
+      color: #555;
+      font-size: .85rem;
+      font-family: sans-serif;
+      margin-bottom: .5rem;
+    }
+
+    /* ── SQUARE COVER 640×640 ── */
+    .cover {
+      width: 640px;
+      height: 640px;
+      background: linear-gradient(145deg, #0D2137 0%, #1a3a5c 55%, #0f2d4a 100%);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+    }
+
+    /* Decorative circles */
+    .cover::before {
+      content: '';
+      position: absolute;
+      width: 420px; height: 420px;
+      border-radius: 50%;
+      background: rgba(82,189,216,.06);
+      top: -140px; right: -100px;
+    }
+    .cover::after {
+      content: '';
+      position: absolute;
+      width: 260px; height: 260px;
+      border-radius: 50%;
+      background: rgba(82,189,216,.05);
+      bottom: -80px; left: -60px;
+    }
+
+    /* Top accent bar */
+    .top-bar {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 6px;
+      background: linear-gradient(90deg, #52BDD8, #3aa8c6, #52BDD8);
+    }
+    .bottom-bar {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 6px;
+      background: linear-gradient(90deg, #52BDD8, #3aa8c6, #52BDD8);
+    }
+
+    /* Logo */
+    .logo-wrap {
+      position: relative;
+      z-index: 2;
+      margin-bottom: 1.2rem;
+    }
+    .logo-wrap img {
+      width: 160px;
+      height: 160px;
+      object-fit: contain;
+      background: #fff;
+      border-radius: 20px;
+      padding: 10px;
+      box-shadow: 0 8px 32px rgba(0,0,0,.35);
+      display: block;
+    }
+
+    /* Company name */
+    .company {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      margin-bottom: .5rem;
+    }
+    .company h1 {
+      color: #fff;
+      font-size: 2rem;
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -.5px;
+    }
+    .company h1 span { color: #52BDD8; }
+    .company .tagline {
+      color: rgba(255,255,255,.55);
+      font-size: .8rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-top: .3rem;
+    }
+
+    /* Divider */
+    .divider {
+      width: 60px;
+      height: 3px;
+      background: #52BDD8;
+      border-radius: 2px;
+      position: relative;
+      z-index: 2;
+      margin: 1rem 0;
+    }
+
+    /* QR block */
+    .qr-block {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .5rem;
+    }
+    .qr-wrap {
+      background: #fff;
+      border-radius: 14px;
+      padding: 10px;
+      box-shadow: 0 4px 20px rgba(0,0,0,.3);
+    }
+    #qrcode canvas, #qrcode img { display: block; border-radius: 6px; }
+    .qr-label {
+      color: rgba(255,255,255,.6);
+      font-size: .72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+    .qr-url {
+      color: #52BDD8;
+      font-size: .85rem;
+      font-weight: 800;
+    }
+
+    /* Phone */
+    .phone {
+      position: absolute;
+      bottom: 22px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,.45);
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .5px;
+      z-index: 2;
+      white-space: nowrap;
+    }
+
+    @media print {
+      body { background: #fff; padding: 0; }
+      .hint { display: none; }
+      .cover { box-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+
+<p class="hint">640 × 640 px — Haz screenshot o Ctrl+P para guardar como imagen</p>
+
+<div class="cover">
+  <div class="top-bar"></div>
+  <div class="bottom-bar"></div>
+
+  <div class="logo-wrap">
+    <img src="assets/logo.webp" alt="Benny A/C Solutions">
+  </div>
+
+  <div class="company">
+    <h1>Benny <span>A/C</span> Solutions <span>LLC</span></h1>
+    <div class="tagline">HVAC · Orlando, FL · 24/7</div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="qr-block">
+    <div class="qr-label">Visita nuestra web · Visit our website</div>
+    <div class="qr-wrap">
+      <div id="qrcode"></div>
+    </div>
+    <div class="qr-url">bennyac.com</div>
+  </div>
+
+  <div class="phone">📞 (407) 655-8000 &nbsp;·&nbsp; Lic. #1362653556310</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+<script>
+  new QRCode(document.getElementById("qrcode"), {
+    text: "https://bennyac.com",
+    width: 120,
+    height: 120,
+    colorDark: "#0D2137",
+    colorLight: "#ffffff",
+    correctLevel: QRCode.CorrectLevel.H
+  });
+</script>
+
+</body>
+</html>
