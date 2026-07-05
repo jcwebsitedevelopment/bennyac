@@ -25,18 +25,19 @@
       margin-bottom: .5rem;
     }
 
-    /* ── SQUARE COVER 640×640 ── */
+    /* ── WHATSAPP BUSINESS COVER 1211×681 ── */
     .cover {
-      width: 640px;
-      height: 640px;
+      width: 1211px;
+      height: 681px;
       background: linear-gradient(145deg, #0D2137 0%, #1a3a5c 55%, #0f2d4a 100%);
       position: relative;
       overflow: hidden;
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       align-items: center;
       justify-content: center;
-      gap: 0;
+      gap: 5rem;
+      padding: 0 5rem;
     }
 
     /* Decorative circles */
@@ -78,8 +79,8 @@
       margin-bottom: 1.2rem;
     }
     .logo-wrap img {
-      width: 160px;
-      height: 160px;
+      width: 200px;
+      height: 200px;
       object-fit: contain;
       background: #fff;
       border-radius: 20px;
@@ -97,7 +98,7 @@
     }
     .company h1 {
       color: #fff;
-      font-size: 2rem;
+      font-size: 2.6rem;
       font-weight: 900;
       line-height: 1.1;
       letter-spacing: -.5px;
@@ -175,23 +176,26 @@
 </head>
 <body>
 
-<p class="hint">640 × 640 px — Haz screenshot o Ctrl+P para guardar como imagen</p>
+<p class="hint">1211 × 681 px — Haz screenshot o Ctrl+P para guardar como imagen</p>
 
 <div class="cover">
   <div class="top-bar"></div>
   <div class="bottom-bar"></div>
 
-  <div class="logo-wrap">
-    <img src="assets/logo.webp" alt="Benny A/C Solutions">
+  <!-- LEFT: logo + text -->
+  <div style="display:flex;flex-direction:column;align-items:center;gap:1.2rem;position:relative;z-index:2;">
+    <div class="logo-wrap">
+      <img src="assets/logo.webp" alt="Benny A/C Solutions">
+    </div>
+    <div class="company">
+      <h1>Benny <span>A/C</span> Solutions <span>LLC</span></h1>
+      <div class="tagline">HVAC · Orlando, FL · 24/7</div>
+    </div>
+    <div class="divider"></div>
+    <div class="phone" style="position:static;transform:none;color:rgba(255,255,255,.5);font-size:.8rem;font-weight:700;">📞 (407) 655-8000 &nbsp;·&nbsp; Lic. #1362653556310</div>
   </div>
 
-  <div class="company">
-    <h1>Benny <span>A/C</span> Solutions <span>LLC</span></h1>
-    <div class="tagline">HVAC · Orlando, FL · 24/7</div>
-  </div>
-
-  <div class="divider"></div>
-
+  <!-- RIGHT: QR -->
   <div class="qr-block">
     <div class="qr-label">Visita nuestra web · Visit our website</div>
     <div class="qr-wrap">
@@ -199,16 +203,14 @@
     </div>
     <div class="qr-url">bennyac.com</div>
   </div>
-
-  <div class="phone">📞 (407) 655-8000 &nbsp;·&nbsp; Lic. #1362653556310</div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 <script>
   new QRCode(document.getElementById("qrcode"), {
     text: "https://bennyac.com",
-    width: 120,
-    height: 120,
+    width: 180,
+    height: 180,
     colorDark: "#0D2137",
     colorLight: "#ffffff",
     correctLevel: QRCode.CorrectLevel.H
