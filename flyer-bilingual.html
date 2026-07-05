@@ -21,7 +21,6 @@
 
     .flyer {
       width: 8.5in;
-      height: 11in;
       background: #fff;
       border-radius: 0;
       overflow: hidden;
@@ -113,7 +112,6 @@
     /* BODY */
     .body {
       padding: 1rem 1.6rem .8rem;
-      flex: 1;
       display: flex;
       flex-direction: column;
     }
@@ -178,7 +176,6 @@
       display: flex;
       gap: 1.2rem;
       align-items: center;
-      flex: 1;
     }
     .contact-block { flex: 1; }
     .contact-label {
@@ -264,8 +261,8 @@
     }
 
     @media print {
-      body { background: #fff; padding: 0; min-height: unset; }
-      .flyer { box-shadow: none; }
+      body { background: #fff; padding: 0; }
+      .flyer { box-shadow: none; width: 8.5in; }
     }
   </style>
 </head>
